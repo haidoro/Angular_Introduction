@@ -1,0 +1,171 @@
+**********************************************
+AngularJSチュートリアル　STEPごとのモジュールの変遷
+https://docs.angularjs.org/tutorial
+**********************************************
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP1
++++++++++++++++++++++++++++++++++++++++++++++++
+モジュールなし
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP2
++++++++++++++++++++++++++++++++++++++++++++++++
+app.js
+[js]
+var phonecatApp = angular.module('phonecatApp', []);
+[/js]
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP3
++++++++++++++++++++++++++++++++++++++++++++++++
+app.js
+[js]
+angular.module('phonecatApp', []);
+[/js]
+
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP4
++++++++++++++++++++++++++++++++++++++++++++++++
+app.module.js
+[js]
+angular.module('phonecatApp', [
+  'phoneList'
+  ]);
+[/js]
+
+＊phone-listフォルダ内のphone-list.component.jsで活用するモジュールを定義
+phone-list/phone-list.module.js
+[js]
+angular.module('phoneList', []);
+[/js]
+
+
+STEP5〜STEP8まで同一のモジュールを使用
+
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP9
++++++++++++++++++++++++++++++++++++++++++++++++
+app.module.js
+[js]
+angular.module('phonecatApp', [
+  'ngRoute',
+  'phoneDetail',
+  'phoneList'
+  ]);
+[/js]
+
+phone-detail/phone-detail.module.js
+[js]
+angular.module('phoneDetail', [
+  'ngRoute'
+]);
+[/js]
+
+phone-list/phone-list.module.js
+[js]
+angular.module('phoneList', []);
+[/js]
+
+STEP10も同一モジュール
+
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP11
++++++++++++++++++++++++++++++++++++++++++++++++
+app.module.js
+[js]
+angular.module('phonecatApp', [
+  'ngRoute',
+  'core',
+  'phoneDetail',
+  'phoneList'
+  ]);
+[/js]
+
+phone-detail/phone-detail.module.js
+[js]
+angular.module('phoneDetail', [
+  'ngRoute'
+]);
+[/js]
+
+phone-list/phone-list.module.js
+[js]
+angular.module('phoneList', []);
+[/js]
+
+core/core.module.js
+[js]
+angular.module('core', []);
+[/js]
+
+STEP12も同一モジュール
+
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP13
++++++++++++++++++++++++++++++++++++++++++++++++
+app.module.js
+[js]
+angular.module('phonecatApp', [
+  'ngRoute',
+  'core',
+  'phoneDetail',
+  'phoneList'
+  ]);
+[/js]
+
+phone-detail/phone-detail.module.js
+[js]
+angular.module('phoneDetail', [
+  'ngRoute',
+  'core.phone'
+]);
+[/js]
+
+phone-list/phone-list.module.js
+[js]
+angular.module('phoneList', ['core.phone']);
+[/js]
+
+core/core.module.js
+[js]
+angular.module('core', ['core.phone']);
+[/js]
+
+core/phone/phone.module.js
+[js]
+angular.module('core.phone', ['ngResource']);
+[/js]
++++++++++++++++++++++++++++++++++++++++++++++++
+STEP14
++++++++++++++++++++++++++++++++++++++++++++++++
+app.module.js
+[js]
+angular.module('phonecatApp', [
+  'ngRoute',
+  'ngAnimate',
+  'core',
+  'phoneDetail',
+  'phoneList'
+  ]);
+[/js]
+
+phone-detail/phone-detail.module.js
+[js]
+angular.module('phoneDetail', [
+  'ngRoute',
+  'core.phone'
+]);
+[/js]
+
+phone-list/phone-list.module.js
+[js]
+angular.module('phoneList', ['core.phone']);
+[/js]
+
+core/core.module.js
+[js]
+angular.module('core', ['core.phone']);
+[/js]
+
+core/phone/phone.module.js
+[js]
+angular.module('core.phone', ['ngResource']);
+[/js]
