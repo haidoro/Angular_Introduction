@@ -7,15 +7,20 @@
 <body>
 <script>
 console.log(1);
+function taskA() {
+    setTimeout(function(){
+		console.log(2)
+	},1000);
+}
+function taskB() {
+    setTimeout(function(){
+		console.log(3)
+	},1000);
+}
+
+
 var promise = Promise.resolve();
-promise
-  .then(
-  		setTimeout(function(){console.log(2)}, 1000)
-  	)
-  .then(
-  		setTimeout(function(){console.log(3)}, 1000)
-  	)
-  // .catch(console.log('Error!'));
+promise.then(taskA).then(taskB);
 </script>	
 </body>
 </html>

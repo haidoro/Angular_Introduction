@@ -726,8 +726,43 @@ $httpは私たちのWebサーバーに対してHTTP GETリクエストを行い�
 promiseについて
 ------------------------------------------
 promiseはAngularJSの標準サービスでも使うことができます。
-promiseは非同期処理を使う際に活用すると便利な仕組みです。
-JavaScriptで非同期処理を行うには通常はコールバック関数を利用します。けれども、これはコールバック地獄を生み出す原因ともなります。
+promiseはES2015で登場した非同期処理の完了または失敗を表現するクラスです。promiseという言葉が示すように、非同期処理が完了すると次の処理を呼び出すことを約束（promise）するというものです。
+JavaScriptで非同期処理を行うには通常はコールバック関数を利用します。けれども、これはコールバック地獄を生み出す原因ともなります。コールバックを使用せずにpromiseを使用することでスマートな記述をすることができるようになります。
+よく使うpromiseには次のメソッドがあります。
+Promise(preocess) コンストラクター
+Promise.prototype.then(onfullfild,onrejected) インスタンスメソッド
+Promise.prototype.catch(onrejected) インスタンスメソッド
+Promise.all(iterable) スターティックメソッド
+引数の関数が実行されたら次のthenが実行される。
+Promise.race(iterable) スターティックメソッド
+引数の関数が実行されたら、早く終了した方が次のthenが実行される。
+.......................
+Promise コンストラクター
+.......................
+構文
+new Promise(process)
+引数 processの実態は非同期で実行したい処理をする関数
+正常終了するとresolveを実行し、失敗した場合はrejectを実行する。
+resolve,rejectは通常関数となります。
+process :function(resolve,reject){}
+.......................
+Promise.prototype.then()
+.......................
+resolveが呼ばれたらonfullfild
+valueはresolveの引数
+ onfullfild : function(value){}
+rejectが呼ばれたらonrejected
+reasonはrejectの引数
+ onrejected : function(reason){}
+ 戻り値　Promise
+....................... 
+Promise.prototype.catch() 
+.......................
+エラーがあった時に呼び出される。
+Promise.prototype.catch(onrejected)
+引数 onrejected : function(reason){}
+戻り値　Promise
+
 .......................................
 非同期処理とコールバック関数の例
 .......................................
